@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         String key = getString(R.string.subscription_key);
         String root = getString(R.string.subscription_apiroot);
 
-        if (client==null){
+        if (client == null) {
             client = new VisionServiceRestClient(key, root);
         }
     }
@@ -100,11 +100,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debug", resultCode + " resultCode");
         if (requestCode == REQUEST_CHOOSE_FILE) {
             if (data == null) {
-                Log.d("debug","data is null");
+                Log.d("debug", "data is null");
                 return;
             }
             Uri uri = data.getData();
-            if(uri == null){
+            if (uri == null) {
                 Log.d("debug", "uri is null");
                 return;
             }
@@ -119,10 +119,6 @@ public class MainActivity extends AppCompatActivity {
                     // Show the image on screen.
                     ImageView imageView = findViewById(R.id.imageView);
                     imageView.setImageBitmap(bitmap);
-
-                    // Add detection log.
-                    Log.d("AnalyzeActivity", "Image: " + uri + " resized to " + bitmap.getWidth()
-                            + "x" + bitmap.getHeight());
 
                     doRecognize(bitmap);
                 }
@@ -151,8 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             new RecognizeTextRequest(bitmap, client, textView).execute();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.d("debug", "doRecognize: " + "Error encountered. Exception is: " + e.toString());
         }
     }
